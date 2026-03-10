@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>shoo</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+}
+.main div{
+    float: left;
+    width: 50%;
+    padding: 20px;
+}
+
+.container{
+width: 100%;
+}
+
+.player1{
+
+background-color: aqua;
+height: 50%;
+}
+.player2{
+    
+background-color: yellowgreen;
+height: 50%;
+}
+
+img{
+width:120px;
+margin:20px;
+}
+
+button{
+font-size:16px;
+}
+
+
+</style>
+
+</head>
+<body>
+    <h1>shoo hayh</h1>
+<h2 id="winner" style="color: blue;"></h2>
+
+<div class="container">
+
+<div class="player1">
+
+<h2>Player 1</h2>
+
+<img id="img1" src="shoo1.png">
+
+<h3>Оnoo: <span id="p1">0</span></h3>
+
+<button id="btn1">Дарах</button>
+
+</div>
+
+
+<div class="player2">
+
+<h2>Player 2</h2>
+
+<img id="img2" src="shoo1.png">
+
+<h3>onoo: <span id="p2">0</span></h3>
+
+<button id="btn2">дарах</button>
+
+</div>
+
+</div>
+
+<script>
+
+let img1 = document.getElementById("img1");
+let img2 = document.getElementById("img2");
+
+let btn1 = document.getElementById("btn1");
+let btn2 = document.getElementById("btn2");
+
+let p1 = document.getElementById("p1");
+let p2 = document.getElementById("p2");
+
+let winner = document.getElementById("winner");
+
+let score1 = 0;
+let score2 = 0;
+let sum1 = Number(localStorage.getItem("score1")) || 0;
+let sum2 = Number(localStorage.getItem("score2")) || 0;
+let count1 = 0;
+let count2 = 0;
+
+
+// Player 1
+btn1.addEventListener("click", function(){
+
+let random = Math.floor(Math.random()*6)+1;
+
+img1.src = "shoo"+random+".png";
+
+score1 += random;
+
+p1.innerHTML = score1;
+
+count1++;
+
+if(count1 == 5){
+btn1.disabled = true;
+
+}
+
+});
+
+
+// Player 2
+btn2.addEventListener("click", function(){
+
+let random = Math.floor(Math.random()*6)+1;
+
+img2.src = "shoo"+random+".png";
+
+score2 += random;
+
+p2.innerHTML = score2;
+
+count2++;
+
+if(count2 == 5){
+
+btn2.disabled = true;
+
+if(score1 > score2){
+winner.innerHTML = " Player 1 yllaa";
+}
+else if(score2 > score1){
+winner.innerHTML = " Player 2 yllaa";
+}
+else{
+winner.innerHTML = " Тэнцлээ!";
+}
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
